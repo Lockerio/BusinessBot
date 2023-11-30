@@ -11,6 +11,7 @@ sqlalchemy = "^2.0.23"
 asyncpg = "^0.29.0"
 pyrogram = "^2.0.106"
 loguru = "^0.7.2"
+alembic = "^1.12.1"
 
 
 [build-system]
