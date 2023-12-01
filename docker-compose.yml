@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: business_bot
+    environment:
+      - DB_URL=postgresql+asyncpg://user:password@db:5432/BusinessBot
+      - API_ID=
+      - API_HASH=
+      - FAVORITES_CHAT_ID=
+    command: tail -f /dev/null
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+  db:
+    image: postgres:13-alpine
+    container_name: postgre_db
+    volumes:
+      - ./pg_db:/var/lib/postgresql/data/
+    ports:
+      - 5405:5432
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password 
+      - POSTGRES_DB=BusinessBot
