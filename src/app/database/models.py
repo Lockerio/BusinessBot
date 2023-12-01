@@ -8,6 +8,7 @@ class User(Base):
     __tablename__ = 'User'
 
     id = Column(Integer, primary_key=True)
+    chat_id = Column(Integer)
     first_name = Column(String)
     last_name = Column(String)
     username = Column(String)

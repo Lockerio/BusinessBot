@@ -10,7 +10,8 @@ class AsyncUserSerializer:
 
     async def get_one(self, user_id):
         async with self.session.begin():
-            return await self.session.execute(select(User).where(User.id == user_id)).scalar()
+            result = await self.session.execute(select(User).where(User.id == user_id))
+            return result.scalar()
 
     async def get_all(self):
         async with self.session.begin():
