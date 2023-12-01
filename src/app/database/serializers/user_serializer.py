@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database.models import User
@@ -16,6 +16,13 @@ class AsyncUserSerializer:
     async def get_all(self):
         async with self.session.begin():
             result = await self.session.execute(select(User))
+            return result.scalars().all()
+
+    async def get_all_today(self):
+        async with self.session.begin():
+            result = await self.session.execute(
+                select(User).filter(func.date(User.registration_date) == func.current_date())
+            )
             return result.scalars().all()
 
     async def create(self, data):

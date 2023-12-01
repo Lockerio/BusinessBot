@@ -11,11 +11,11 @@ class AsyncDelayedMessageService:
     async def get_all(self):
         return await self.serializer.get_all()
 
+    async def get_all_by_elapsed_time(self):
+        return await self.serializer.get_all_by_elapsed_time()
+
     async def create(self, data):
-        if await self.get_one(data['id']):
-            return False
         await self.serializer.create(data)
-        return True
 
     async def delete(self, delayed_message_id):
         await self.serializer.delete(delayed_message_id)

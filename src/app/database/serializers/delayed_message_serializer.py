@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database.models import DelayedMessage
@@ -16,6 +16,14 @@ class AsyncDelayedMessageSerializer:
     async def get_all(self):
         async with self.session.begin():
             result = await self.session.execute(select(DelayedMessage))
+            return result.scalars().all()
+
+    async def get_all_by_elapsed_time(self):
+        async with self.session.begin():
+            current_time = func.now()
+            result = await self.session.execute(
+                select(DelayedMessage).where(DelayedMessage.time_to_send < current_time)
+            )
             return result.scalars().all()
 
     async def create(self, data):

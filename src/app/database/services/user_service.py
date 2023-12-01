@@ -11,6 +11,9 @@ class AsyncUserService:
     async def get_all(self):
         return await self.serializer.get_all()
 
+    async def get_all_today(self):
+        return await self.serializer.get_all_today()
+
     async def create(self, data):
         if await self.get_one(data['id']):
             return False

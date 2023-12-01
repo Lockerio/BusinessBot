@@ -21,7 +21,7 @@ async def fill_db():
         'id': 3,
         'title': 'photo',
         'text': 'https://profkompntz.ru/wp-content/uploads/2020/08/bFHmVHvqvVQ-875x1024.jpg',
-        'delay_time': 0
+        'delay_time': 90
     })
 
     await messageTemplateService.create({
