@@ -15,7 +15,8 @@ class AsyncUserSerializer:
 
     async def get_all(self):
         async with self.session.begin():
-            return await self.session.execute(select(User)).scalars().all()
+            result = await self.session.execute(select(User))
+            return result.scalars().all()
 
     async def create(self, data):
         user = User(**data)
