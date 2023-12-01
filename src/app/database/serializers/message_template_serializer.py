@@ -11,14 +11,14 @@ class AsyncMessageTemplateSerializer:
     async def get_one(self, message_template_id):
         async with self.session.begin():
             result = await self.session.execute(select(MessageTemplate).where(MessageTemplate.id == message_template_id))
-            return await result.scalar()
+            return result.scalar()
 
     async def get_one_by_title(self, title):
         async with self.session.begin():
             result = await self.session.execute(
                 select(MessageTemplate).where(MessageTemplate.title == title)
             )
-            return await result.scalar()
+            return result.scalar()
 
     async def get_all(self):
         async with self.session.begin():
