@@ -12,7 +12,7 @@ asyncpg = "^0.29.0"
 pyrogram = "^2.0.106"
 loguru = "^0.7.2"
 alembic = "^1.12.1"
-psycopg2 = "^2.9.9"
+tgcrypto = "^1.2.5"
 
 
 [build-system]
